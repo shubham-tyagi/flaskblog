@@ -4,7 +4,39 @@ The value of the secret key is set as an expression with two terms, joined by th
  The first term looks for the value of an environment variable, also called SECRET_KEY. 
  The second term, is just a hardcoded string. 
  This is a pattern that you will see me repeat often for configuration variables. 
- The idea is that a value sourced from an environment variable is preferred, but if the environment does not define the variable, then the hardcoded string is used instead. When you are developing this application, the security requirements are low, so you can just ignore this setting and let the hardcoded string be used. But when this application is deployed on a production server, I will be setting a unique and difficult to guess value in the environment, so that the server has a secure key that nobody else knows.
 
+----------------------------------------------------------
+
+@login.user_loader reason why is it used
+ The idea is that a value sourced from an environment variable is preferred, but if the environment 
+ does not define the variable, then the hardcoded string is used instead. When you are developing this 
+ application, the security requirements are low, so you can just ignore this setting and let the hardcoded
+ string be used. But when this application is deployed on a production server, I will be setting a unique
+ and difficult to guess value in the environment, so that the server has a secure key that nobody else
+ knows.
+
+ Because Flask-Login knows nothing about databases, it needs the application's help in loading a user. For 
+ that reason, the extension expects that the application will configure a user loader function, that can be
+    called to load a user given the ID. This function can be added in the app/models.py module:
 --------------------------------------------------------------------
 
+login = LoginManager(app)
+login.login_view = 'login'
+
+Flask-Login provides a very useful feature that forces users to log in before they can view certain pages 
+of the application. If a user who is not logged in tries to view a protected page, Flask-Login will
+automatically redirect the user to the login form, and only redirect back to the page the user wanted to 
+view after the login process is complete.
+
+For this feature to be implemented, Flask-Login needs to know what is the view function that handles 
+logins. This can be added in app/__init__.py:
+
+----------------------------------------------------------------------
+
+if not next_page or url_parse(next_page).netloc != '': # what is it means in this line..?
+            next_page = url_for('index')
+
+Now coming to your code, the if statement checks whether or not the next_page exists and whether the 
+next_page has a netloc. In that login() function, checking if .netloc != '', means that it is checking 
+whether the result of url_parse(next_page) is a relative url. A relative url has a path but no hostname 
+(and thus no netloc). ;)
