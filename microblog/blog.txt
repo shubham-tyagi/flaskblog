@@ -19,7 +19,7 @@ The value of the secret key is set as an expression with two terms, joined by th
  that reason, the extension expects that the application will configure a user loader function, that can be
     called to load a user given the ID. This function can be added in the app/models.py module:
 --------------------------------------------------------------------
-
+op
 login = LoginManager(app)
 login.login_view = 'login'
 
@@ -40,3 +40,39 @@ Now coming to your code, the if statement checks whether or not the next_page ex
 next_page has a netloc. In that login() function, checking if .netloc != '', means that it is checking 
 whether the result of url_parse(next_page) is a relative url. A relative url has a path but no hostname 
 (and thus no netloc). ;)
+
+---------------------------------------------------------------------------
+@before_request
+
+The @before_request decorator from Flask register the decorated function to be executed right before the 
+view function. This is extremely useful because now I can insert code that I want to execute before any 
+view function in the application, and I can have it in a single place. The implementation simply checks 
+if the current_user is logged in, and in that case sets the last_seen field to the current time. I 
+mentioned this before, a server application needs to work in consistent time units, and the standard 
+practice is to use the UTC time zone.
+
+-----------------------------------------------------------------------------------
+return render_template('404.html'), 404
+
+the reason why 404 is used here
+For all the view functions that I created so far, I did not need to add a second return value because 
+the default of 200 (the status code for a successful response) is what I wanted. In this case these are 
+error pages, so I want the status code of the response to reflect that.
+
+--------------------------------------------------------------------------------------
+use of log files
+
+As a first interesting use of the log file, the server writes a line to the logs each time it starts. When this application runs 
+on a production server, these log entries will tell you when the server was restarted.
+
+--------------------------------------------------------------------------------------
+Why token is used and there work ?
+
+As you can see the resulting token is a long sequence of characters. But do not think that this is an 
+encrypted token. The contents of the token, including the payload, can be decoded easily by anyone 
+(don't believe me? Copy the above token and then enter it in the JWT debugger to see its contents). 
+What makes the token secure is that the payload is signed. If somebody tried to forge or tamper with 
+the payload in a token, then the signature would be invalidated, and to generate a new signature the 
+secret key is needed. When a token is verified, the contents of the payload are decoded and returned 
+back to the caller. If the token's signature was validated, then the payload can be trusted as 
+authentic.
