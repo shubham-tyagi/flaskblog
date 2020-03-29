@@ -1,5 +1,61 @@
-2020-02-17 13:02:07,483 INFO: Microblog startup [in /home/ShubhamTyagi/flaskprojects/microblog/app/__init__.py:48]
-2020-02-17 13:02:37,452 INFO: Microblog startup [in /home/ShubhamTyagi/flaskprojects/microblog/app/__init__.py:48]
-2020-02-17 13:03:05,413 INFO: Microblog startup [in /home/ShubhamTyagi/flaskprojects/microblog/app/__init__.py:48]
-2020-03-09 16:56:15,013 INFO: Microblog startup [in /home/ShubhamTyagi/flaskprojects/microblog/app/__init__.py:48]
-2020-03-22 16:04:15,351 INFO: Microblog startup [in /home/ShubhamTyagi/flaskprojects/microblog/app/__init__.py:51]
+2020-03-23 07:37:50,438 ERROR: Exception on / [GET] [in /home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/app.py:1891]
+Traceback (most recent call last):
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 2446, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1951, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1820, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1949, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 1935, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask_login/utils.py", line 261, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/app/routes.py", line 36, in index
+    prev_url=prev_url)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 140, in render_template
+    ctx.app,
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/templating.py", line 120, in _render
+    rv = template.render(context)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/app/templates/index.html", line 1, in top-level template code
+    {% extends "base.html" %}
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/jinja2/environment.py", line 1005, in render
+    return concat(self.root_render_func(self.new_context(vars)))
+  File "/home/ShubhamTyagi/flaskprojects/microblog/app/templates/index.html", line 14, in root
+    </p>
+  File "/home/ShubhamTyagi/flaskprojects/microblog/app/templates/base.html", line 14, in root
+    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 10, in root
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block_doc
+    {% block body -%}
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 39, in block_html
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 90, in block_body
+  File "/home/ShubhamTyagi/flaskprojects/microblog/app/templates/base.html", line 44, in block_navbar
+    {{ new_messages }}
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/jinja2/runtime.py", line 262, in call
+    return __obj(*args, **kwargs)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/helpers.py", line 370, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/app.py", line 2215, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/_compat.py", line 39, in reraise
+    raise value
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/flask/helpers.py", line 358, in url_for
+    endpoint, values, method=method, force_external=external
+  File "/home/ShubhamTyagi/flaskprojects/microblog/venv/lib/python3.7/site-packages/werkzeug/routing.py", line 2020, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'main.index'. Did you mean 'index' instead?
+2020-03-23 07:43:15,653 INFO: Microblog startup [in /home/ShubhamTyagi/flaskprojects/microblog/app/__init__.py:52]
+2020-03-27 13:55:53,210 INFO: Microblog startup [in /home/ShubhamTyagi/flaskprojects/microblog/app/__init__.py:54]
