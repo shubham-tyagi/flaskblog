@@ -20,8 +20,8 @@ It is a blog web app which can be used to read others blogs and write our own . 
 * Setup [virual enviornment][1] for python
 * Setup [virtual enviornment][2] for flask
 * run the following commands through the terminal
-  * export(linux or mac)/set(windows) FLASK_APP=microblog.py
-  * flask run
+  * ```export(linux or mac)/set(windows) FLASK_APP=microblog.py```
+  * ```flask run```
 
 ## Contributions
 If you want to contribute to this project, feel free to fork it and send a PR :)
